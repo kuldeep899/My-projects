@@ -4,17 +4,17 @@ Servo myservo;
 int pos = 0;
 boolean fire = false;
 
-#define Left_S 10       // left sensor
-#define Right_S 12      // right sensor
-#define Forward_S 11    //forward sensor
+#define RM1 1       // left motor
+#define RM2 2       // left motor
+#define enR 3
+#define LM1 4       // right motor
+#define LM2 5       // right motor
+#define enL 6
+#define pump 7      // water pump motor
 
-#define LM1 4       // left motor
-#define LM2 2       // left motor
-#define enL 3
-#define RM1 7       // right motor
-#define RM2 8       // right motor
-#define enR 9
-#define pump 13
+#define Right_S 8       // right sensor
+#define Forward_S 9     //forward sensor
+#define Left_S  10      // left sensor
 
 void setup()
 {
