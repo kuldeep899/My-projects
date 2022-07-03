@@ -1,4 +1,4 @@
-#define RM1 1       // left motor
+#define RM1 1       
 #define RM2 2       // left motor
 #define enR 3
 #define LM1 4       // right motor
