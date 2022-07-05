@@ -1,31 +1,61 @@
-#define RM1 1       
-#define RM2 2       // left motor
-#define enR 3
-#define LM1 4       // right motor
-#define LM2 5       // right motor
-#define enL 6
-#define pump 7      // water pump motor
+/*
 
-#define Right_S 10       // right sensor
-#define Forward_S 12     //forward sensor
-#define Left_S  9      // left sensor
+    Demonstration of Controlling Continous Servo (360 servo)
+    this code allows you to control 360 degree servo by a command from Serial Monitor
+
+   Modified by Ahmad Shamshiri for Robojax.com
+   on Sunday July 01, 2018 at 11:09 in Ajax, Ontario, Canada
+   Watch video instruction of this video:https://youtu.be/b_xvu6wWafA
+   Get this code from Robojax.com
+
+  Original code by BARRAGAN <http://barraganstudio.com>
+  This example code is in the public domain.
+  modified 8 Nov 2013
+  by Scott Fitzgerald
+  http://www.arduino.cc/en/Tutorial/Sweep
+*/
+
+#include <Servo.h>
+
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
+
+int pos = 0;    // variable to store the servo position
+int incomingByte = 0;   // for incoming serial data
+
 void setup() {
-  pinMode(Left_S, INPUT);
-  pinMode(Right_S, INPUT);
-  pinMode(Forward_S, INPUT);
   Serial.begin(9600);
+  myservo.attach(11);  // attaches the servo on pin 9 to the servo object
 }
 
+
+
 void loop() {
-  Serial.print("Left Sensor = ");
-  int L = digitalRead(Left_S);
-  Serial.print(L);
-  Serial.print(", ");
-  Serial.print("Forward Sensor = ");
-  int F = digitalRead(Forward_S);
-  Serial.print(F);
-  Serial.print(", ");
-  Serial.print("Right Sensor = ");
-  int R = digitalRead(Right_S);
-  Serial.println(R);
+
+  // send data only when you receive data:
+  if (Serial.available() > 0) {
+    // read the incoming byte:
+    incomingByte = Serial.read();
+
+    // say what you got:
+    Serial.print("received: ");
+    Serial.print (incomingByte);
+    if (incomingByte == 108) {
+      Serial.println(" sent 0 Rotaing CW ");
+      myservo.write(0);
+    } else if (incomingByte == 114) {
+      Serial.println(" sent 180 Rotaing CCW ");
+      myservo.write(180);
+    } else if (incomingByte == 60) {
+      Serial.println(" sent Stopped ");
+      myservo.write(60);
+    } else {
+      Serial.println(" moving Random");
+      myservo.write(incomingByte);
+    }
+
+
+  }
+
+
 }
