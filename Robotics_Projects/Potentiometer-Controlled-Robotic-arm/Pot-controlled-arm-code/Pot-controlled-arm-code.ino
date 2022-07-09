@@ -7,9 +7,9 @@ float val1, val2, val3;
 
 void setup() {
   Serial.begin(9600);
-  myservo1.attach(9, 500, 2420);  //MG995
-  myservo2.attach(10, 820, 2140); //DS3115
-  myservo3.attach(11, 820, 2140); //DS3115
+  myservo1.attach(3);  
+  myservo2.attach(5); 
+  myservo3.attach(6); 
   set_servo();
 }
 
